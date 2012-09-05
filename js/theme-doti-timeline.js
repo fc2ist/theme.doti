@@ -48,7 +48,7 @@
 
   $(function() {
     var articles, columnWidth, reaction;
-    reaction = $('.reaction .articles').addClass('timeline');
+    reaction = $('.reaction .articles');
     columnWidth = Math.floor(reaction.width() / 2) - 30;
     articles = reaction.children('article').css('width', columnWidth);
     reaction.masonry({
@@ -65,7 +65,14 @@
         }
       });
     });
-    return new listPager(articles);
+    new listPager(articles);
+    return $(window).on('resize', function() {
+      if ($(window).width() > 767) {
+        return reaction.addClass('timeline');
+      } else {
+        return reaction.removeClass('timeline');
+      }
+    });
   });
 
 }).call(this);

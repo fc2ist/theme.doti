@@ -33,7 +33,7 @@ class listPager
     @target.parent().trigger('changed');
 
 $(->
-  reaction = $('.reaction .articles').addClass('timeline')
+  reaction = $('.reaction .articles')
   columnWidth = Math.floor(reaction.width()/2) - 30
   articles = reaction.children('article').css('width', columnWidth)
   reaction.masonry({
@@ -50,4 +50,10 @@ $(->
     )
   )
   new listPager(articles)
+  $(window).on('resize', ->
+    if $(window).width() > 767
+      reaction.addClass('timeline')
+    else
+      reaction.removeClass('timeline')
+  )
 )
