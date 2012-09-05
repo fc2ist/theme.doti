@@ -1,0 +1,63 @@
+//
+// Article
+// --------------------------------------------------
+
+#articles > .post > .body {
+  
+  > section,
+  #more > section {
+    margin: 80px 0;
+    
+    section {
+      margin: 24px;
+    }
+    
+    > section {
+      margin: 48px 24px;
+    }
+  }
+    
+  .img-eyecatch {
+    margin: 24px auto;
+  }
+
+  .link-eyecatch {
+    float: left;
+    display: inline-block;
+    margin: 0 16px 16px 0;
+    .img-eyecatch {
+      margin: 0;
+    }
+  }
+  
+  .link-eyecatch + * {
+    margin-top: 0;
+  }
+
+  a img {
+    .transition(opacity .2s);
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9;
+  }
+  
+  embed, iframe, object {
+    max-width: 100%;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 16px 0;
+    font-family: @serifFontFamily;
+  }
+  
+  p, blockquote, pre, xmp, ul, ol, dl, table {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}

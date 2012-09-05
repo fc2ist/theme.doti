@@ -1,0 +1,78 @@
+//
+// Layout
+// --------------------------------------------------
+
+
+// Scaffolding
+// --------------------------------------------------
+
+#content {
+  .clearfix();
+}
+
+#main {
+  float: left;
+  width: 560px;
+}
+
+#sidebar {
+  float: right;
+  width: 200px;
+  margin-bottom: 80px;
+  padding-left: 24px;
+  border-left: 1px solid @grayLighter;
+  border-bottom: 1px solid @grayLighter;
+}
+
+.container {
+  width: 200px + 560px + 120px;
+}
+
+// Landscape phone to portrait tablet
+// --------------------------------------------------
+
+@media (max-width: 767px) {
+  .container {
+    width: auto;
+    padding: 0 10px;
+  }
+  #main {
+    float: none;
+    width: auto;
+  }
+  #sidebar {
+    float: none;
+    width: auto;
+    margin-bottom: 0;
+    padding-left: 0;
+    border-left: none;
+    border-bottom: none;
+    .clearfix();
+    
+    > section {
+      width: 45%;
+    }
+    
+    > .first {
+      float: left;
+    }
+    
+    > .second {
+      float: right;
+    }
+  }
+}
+
+// Landscape phones and down
+// --------------------------------------------------
+@media (max-width: 480px) {
+  #sidebar {
+    > section {
+      width: auto;
+    }
+    > .first,
+    > .second {
+      float: none;
+    }
+  }
+}

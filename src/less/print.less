@@ -1,0 +1,23 @@
+//
+// Print
+// --------------------------------------------------
+
+
+@media print {
+  a {
+    color: @textColor;
+  }
+
+  .container {
+    width: auto;
+  }
+  
+  #main {
+    width: auto;
+    float: none;
+  }
+  
+  #sidebar, #footer, #cm, #tb, #pager, .fc2_footer {
+    display: none;
+  }
+}

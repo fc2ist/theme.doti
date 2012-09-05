@@ -1,0 +1,64 @@
+//
+// Pager pagination
+// --------------------------------------------------
+
+
+.pager {
+  margin: @baseLineHeight 0;
+  list-style: none;
+  text-align: center;
+  font-size: .9em;
+  .clearfix();
+}
+.pager li {
+  display: inline;
+}
+.pager a {
+  display: inline-block;
+  padding: 0 14px;
+  line-height: 30px;
+  position: relative;
+  color: @white;
+  background-color: @gray;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+  }
+}
+.pager a:hover {
+  text-decoration: none;
+  background-color: @linkColor;
+}
+.pager .next a {
+  float: right;
+  margin-right: 15px;
+  &::before {
+    right: -30px;
+    border-left-color: @gray;
+  }
+  &:hover::before {
+    border-left-color: @linkColor;
+  }
+}
+.pager .previous a {
+  float: left;
+  margin-left: 15px;
+  &::before {
+    left: -30px;
+    border-right-color: @gray;
+  }
+  &:hover::before {
+    border-right-color: @linkColor;
+  }
+}
+.pager .disabled a,
+.pager .disabled a:hover {
+  color: @gray;
+  background-color: #@grayLighter;
+  cursor: default;
+}
