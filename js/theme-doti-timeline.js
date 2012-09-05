@@ -47,13 +47,11 @@
   })();
 
   $(function() {
-    var articles, columnWidth, reaction;
+    var articles, f, reaction, switchTimeline, timeline;
     reaction = $('.reaction .articles');
-    columnWidth = Math.floor(reaction.width() / 2) - 30;
-    articles = reaction.children('article').css('width', columnWidth);
-    reaction.masonry({
-      'itemSelector': 'article:not(.inv)'
-    }).on('changed', function() {
+    articles = reaction.children('article');
+    reaction.on('changed', function() {
+      if (!timeline) return;
       $(this).masonry('reload');
       return articles.each(function() {
         var e;
@@ -66,13 +64,28 @@
       });
     });
     new listPager(articles);
-    return $(window).on('resize', function() {
+    timeline = false;
+    switchTimeline = function() {
       if ($(window).width() > 767) {
-        return reaction.addClass('timeline');
-      } else {
-        return reaction.removeClass('timeline');
+        if (timeline) return;
+        timeline = true;
+        reaction.addClass('timeline');
+        articles.css('width', Math.floor(reaction.width() / 2) - 30);
+        return reaction.masonry({
+          'itemSelector': 'article:not(.inv)'
+        }).trigger('changed');
+      } else if (timeline) {
+        articles.css('width', 'auto');
+        reaction.removeClass('timeline').masonry('destroy');
+        return timeline = false;
       }
+    };
+    $(window).on('resize', f = function() {
+      f.i = f.i || 0;
+      if (f.i++ % 2) return;
+      return switchTimeline();
     });
+    return switchTimeline();
   });
 
 }).call(this);

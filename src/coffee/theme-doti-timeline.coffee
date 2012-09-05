@@ -34,12 +34,9 @@ class listPager
 
 $(->
   reaction = $('.reaction .articles')
-  columnWidth = Math.floor(reaction.width()/2) - 30
-  articles = reaction.children('article').css('width', columnWidth)
-  reaction.masonry({
-    'itemSelector': 'article:not(.inv)'
-  })
-  .on('changed', ->
+  articles = reaction.children('article')
+  reaction.on('changed', ->
+    if !timeline then return 
     $(this).masonry('reload')
     articles.each(->
       e = $(this)
@@ -50,10 +47,25 @@ $(->
     )
   )
   new listPager(articles)
-  $(window).on('resize', ->
+  timeline = false
+  switchTimeline = ->
     if $(window).width() > 767
+      if timeline then return
+      timeline = true
       reaction.addClass('timeline')
-    else
+      articles.css('width', Math.floor(reaction.width()/2) - 30)
+      reaction.masonry(
+        'itemSelector': 'article:not(.inv)'
+      ).trigger('changed')
+    else if timeline
+      articles.css('width', 'auto')
       reaction.removeClass('timeline')
+      .masonry('destroy')
+      timeline = false
+  $(window).on('resize', f=->
+    f.i = f.i || 0
+    if f.i++ % 2 then return
+    switchTimeline()
   )
+  switchTimeline()
 )
