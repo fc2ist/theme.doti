@@ -1,3 +1,543 @@
+<!-- v0.1.0 -->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>ジェネレーター [.i]</title>
+	<link rel="stylesheet" type="text/css" charset="UTF-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/poto-bootstrap.css" />
+	<!--[if lt IE 9]><script type="text/javascript" charset="utf-8" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/bootstrap.js"></script>
+	<script type="text/javascript" charset="utf-8" src="generator-doti.js"></script>
+	
+	<style type="text/css">
+	body {
+	 padding-top: 20px;
+	}
+	footer {
+    margin: 80px 0 20px;
+    text-align: right;
+	}
+	h1 {
+	 margin-bottom: 30px;
+	}
+	fieldset {
+	 margin-bottom: 48px;
+	}
+  textarea {
+    width: 95%;
+  }
+	</style>
+	
+</head>
+<body>
+
+  <div class="container">
+    <h1>ジェネレーター</h1>
+    
+    <fieldset>
+      <legend>SNSの設定</legend>
+      <div class="row">
+        <div class="control-group span4">
+          <label for="input-sns[twitter]" class="control-label">Twitter :</label>
+          <div class="controls"><input type="text" id="input-sns[twitter]" value="" placeholder="Twitter" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[facebook]" class="control-label">Facebook :</label>
+          <div class="controls"><input type="text" id="input-sns[facebook]" value="" placeholder="Facebook" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[google_plus]" class="control-label">Google+ :</label>
+          <div class="controls"><input type="text" id="input-sns[google_plus]" value="" placeholder="Google+" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[flickr]" class="control-label">Flickr :</label>
+          <div class="controls"><input type="text" id="input-sns[flickr]" value="" placeholder="Flickr" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[instagram]" class="control-label">Instagram :</label>
+          <div class="controls"><input type="text" id="input-sns[instagram]" value="" placeholder="Instagram" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[youtube]" class="control-label">YouTube :</label>
+          <div class="controls"><input type="text" id="input-sns[youtube]" value="" placeholder="YouTube" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[pinterest]" class="control-label">Pinterest :</label>
+          <div class="controls"><input type="text" id="input-sns[pinterest]" value="" placeholder="Pinterest" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-sns[github]" class="control-label">Github :</label>
+          <div class="controls"><input type="text" id="input-sns[github]" value="" placeholder="Github" /></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>HTMLの設定</legend>
+      <div class="row">
+        <div class="control-group span6">
+          <label for="input-html[post_top]" class="control-label">本文の上 :</label>
+          <div class="controls">
+            <p><textarea id="input-html[post_top]" rows="5" placeholder="本文の上に表示したい内容"></textarea></p>
+            <label for="input-html[post_top_check]">
+              <input id="input-html[post_top_check]" type="checkbox" value="1" /> 記事ページだけで表示する
+            </label>
+          </div>
+        </div>
+        <div class="control-group span6">
+          <label for="input-html[post_bottom]" class="control-label">本文の下 :</label>
+          <div class="controls">
+            <p><textarea id="input-html[post_bottom]" rows="5" placeholder="本文の下に表示したい内容"></textarea></p>
+            <label for="input-html[post_bottom_check]">
+              <input id="input-html[post_bottom_check]" type="checkbox" value="1" /> 記事ページだけで表示する
+            </label>
+          </div>
+        </div>
+        <div class="control-group span6">
+          <label for="input-html[post_middle]" class="control-label">追記の上 :</label>
+          <div class="controls">
+            <textarea id="input-html[post_middle]" rows="5" placeholder="追記の上に表示したい内容"></textarea>
+          </div>
+        </div>
+        <div class="control-group span6">
+          <label for="input-html[head_bottom]" class="control-label">&lt;/head&gt;の上 :</label>
+          <div class="controls"><textarea id="input-html[head_bottom]" rows="5" placeholder="&lt;/head&gt;の上"></textarea></div>
+        </div>
+        <div class="control-group span6">
+          <label for="input-html[body_top]" class="control-label">&lt;body&gt;の下 :</label>
+          <div class="controls"><textarea id="input-html[body_top]" rows="5" placeholder="&lt;body&gt;の下"></textarea></div>
+        </div>
+        <div class="control-group span6">
+          <label for="input-html[body_bottom]" class="control-label">&lt;/body&gt;の上 :</label>
+          <div class="controls"><textarea id="input-html[body_bottom]" rows="5" placeholder="&lt;/body&gt;の上"></textarea></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>スタイルシートの設定</legend>
+      <div class="row">
+        <div class="control-group span4">
+          <label for="input-css[color]" class="control-label">文字の色 :</label>
+          <div class="controls"><input type="text" id="input-css[color]" value="" placeholder="#555555" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[linkColor]" class="control-label">リンクの色 :</label>
+          <div class="controls"><input type="text" id="input-css[linkColor]" value="" placeholder="#f89406" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[linkColorHover]" class="control-label">カーソル乗せたときのリンクの色 :</label>
+          <div class="controls"><input type="text" id="input-css[linkColorHover]" value="" placeholder="#555555" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[backgroundColor]" class="control-label">背景の色 :</label>
+          <div class="controls"><input type="text" id="input-css[backgroundColor]" value="" placeholder="white" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[backgroundImage]" class="control-label">背景画像 :</label>
+          <div class="controls"><input type="text" id="input-css[backgroundImage]" value="" placeholder="http://" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[titleImage]" class="control-label">ブログタイトルの画像 :</label>
+          <div class="controls"><input type="text" id="input-css[titleImage]" value="" placeholder="http://" /></div>
+        </div>
+        <div class="control-group span4">
+          <label for="input-css[layout]" class="control-label">レイアウト :</label>
+          <div class="controls">
+            <select id="input-css[layout]">
+              <option value="right">2カラム右サイドバー</option>
+              <option value="left">2カラム左サイドバー</option>
+              <option value="both">3カラム両サイド</option>
+              <option value="single">1カラム</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    
+    <fieldset>
+      <legend>生成</legend>
+      <div class="row">
+        <div class="control-group span12" style="margin-bottom:48px">
+          <div class="controls">
+            <a href="#" rel="generate" class="btn btn-large btn-block btn-primary">生成</a>
+          </div>
+        </div>
+        <div class="control-group span6 fade">
+          <label for="output[html]" class="control-label">HTML :</label>
+          <div class="controls"><textarea id="output[html]" rows="10"></textarea></div>
+        </div>
+        <div class="control-group span6 fade">
+          <label for="output[css]" class="control-label">スタイルシート :</label>
+          <div class="controls"><textarea id="output[css]" rows="10"></textarea></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <footer>
+      <p>
+        &copy; 2012 <a href="http://fc2ist.blog.fc2.com/">FC2.blog.hack;</a> All Rights Reserved.
+      </p>
+    </footer>
+  </div>
+
+<!--
+********************** 以下テンプレート **********************
+-->
+
+<!-- SNS -->
+<xmp id="template-sns" class="hide">
+		<nav>
+			<ul>
+				{{loop}}<li><a class="icon-sns icon-white {{:icon}}" href="{{:url}}" title="{{:name}}">{{:name}}</a></li>{{/loop}}
+			</ul>
+		</nav>
+</xmp>
+
+<!-- ブログタイトルの画像 -->
+<xmp id="template-titleImage" class="hide">
+// Title Image
+// --------------------------------------------------
+
+#header h1 a {
+  display: block;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  border: 0;
+  background: transparent url({{:url}}) no-repeat 0 0;
+  width: {{:width}}px;
+  height: {{:height}}px;
+}
+</xmp>
+
+<!-- 2カラム左サイドバー -->
+<xmp id="template-layout-left" class="hide">
+// Layout
+// --------------------------------------------------
+
+#main {
+  float: right;
+}
+#sidebar {
+  float: left;
+  padding-left: 0;
+  padding-right: 24px;
+  border-left: none;
+  border-right: 1px solid #eee;
+}
+@media (max-width: 767px) {
+  #sidebar {
+    padding-right: 0;
+    border-right: none;
+  }
+}
+</xmp>
+
+<!-- 3カラム -->
+<xmp id="template-layout-both" class="hide">
+// Layout
+// --------------------------------------------------
+
+.container {
+  width: 960px;
+}
+#content > .container {
+  position: relative;
+}
+#main {
+  width: 500px;
+  margin-left: 225px;
+}
+#sidebar {
+  width: 180px;
+}
+#sidebar > .first {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 180px;
+  padding-right: 24px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+@media (max-width: 767px) {
+  .container {
+    width: auto;
+  }
+  #content > .container {
+    position: static;
+  }
+  #main {
+    float: none;
+    margin-left: 0;
+    width: auto;
+  }
+  #sidebar {
+    width: auto;
+  }
+  #sidebar > .first {
+    position: static;
+    width: 45%;
+    padding-right: 0;
+    float: left;
+    border-right: none;
+    border-bottom: none;
+  }
+}
+</xmp>
+
+<!-- 1カラム -->
+<xmp id="template-layout-single" class="hide">
+// Layout
+// --------------------------------------------------
+
+.container {
+  width: 740px;
+  padding: 0 10px;
+}
+#main {
+  float: none;
+  width: auto;
+}
+#sidebar {
+  float: none;
+  width: auto;
+  margin-bottom: 0;
+  padding-left: 0;
+  border-left: none;
+  border-bottom: none;
+  *zoom: 1;
+}
+#sidebar > section {
+  width: 45%;
+}
+#sidebar > .first {
+  float: left;
+}
+#sidebar > .second {
+  float: right;
+}
+#sidebar:before,
+#sidebar:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#sidebar:after {
+  clear: both;
+}
+@media (max-width: 767px) {
+  html {
+    overflow-x: hidden;
+  }
+  .container {
+    width: auto;
+  }
+}
+</xmp>
+
+<!-- スタイルシート -->
+<xmp id="template-css" class="hide">
+/*!
+ *
+ * User Style Sheet
+ *
+ */
+
+
+// Scaffolding
+// --------------------------------------------------
+
+body {
+  color: {{:color}};
+  background-color: {{:backgroundColor}};
+  {{:backgroundImage}}
+}
+a {
+  color: {{:linkColor}};
+}
+a:hover {
+  color: {{:linkColorHover}};
+}
+
+
+// Header
+// --------------------------------------------------
+
+#header {
+  border-top-color: #555555;
+  border-bottom-color: #eeeeee;
+}
+#header h1 a {
+  color: #000000;
+}
+#header h1 a:hover {
+  color: {{:linkColor}};
+}
+#header h2 {
+  color: #999999;
+}
+#header h2::before {
+  background-color: #999999;
+}
+#header nav a {
+  background-color: #555555;
+}
+#header nav a.twitter:hover {
+  background-color: #00aced;
+}
+#header nav a.facebook:hover {
+  background-color: #3c5b97;
+}
+#header nav a.google_plus:hover {
+  background-color: #f5bd34;
+}
+#header nav a.flickr:hover {
+  background-color: #ff0084;
+}
+#header nav a.instagram:hover {
+  background-color: #fc3755;
+}
+#header nav a.youtube:hover {
+  background-color: #ff3333;
+}
+#header nav a.pinterest:hover {
+  background-color: #c9232d;
+}
+#header nav a.github:hover {
+  background-color: #000000;
+}
+
+
+// Main
+// --------------------------------------------------
+
+#main > h1::after {
+  background-color: #222222;
+}
+
+
+// Articles
+// --------------------------------------------------
+
+#articles > .post {
+  border-bottom-color: #eeeeee;
+}
+#articles > .post > header h1,
+#articles > .post > header h2 {
+  color: #333333;
+}
+#articles > .post > header h1 a,
+#articles > .post > header h2 a {
+  color: {{:linkColorHover}};
+}
+#articles > .post > header h1 a:hover,
+#articles > .post > header h2 a:hover {
+  color: {{:linkColor}};
+}
+#articles > .post > header ul {
+  color: #aaa;
+}
+#articles > .post > header ul > li {
+  border-right-color: #eeeeee;
+}
+#articles > .post > footer ul li {
+  border-right-color: #eeeeee;
+}
+#articles > .post .relate_dl {
+  border-color: #eeeeee;
+}
+#articles > .post .relate_dl dt {
+  border-bottom-color: #eeeeee;
+}
+
+
+// Comment & Trackback
+// --------------------------------------------------
+
+#cm .reaction > h2,
+#tb .reaction > h2 {
+  border-color: #999999;
+}
+#cm .reaction article,
+#tb .reaction article {
+  border-bottom-color: #eeeeee;
+}
+#cm .reaction article footer,
+#tb .reaction article footer {
+  color: #999999;
+}
+
+
+// Sidebar
+// --------------------------------------------------
+
+#sidebar a {
+  color: {{:linkColorHover}};
+}
+#sidebar a:hover {
+  color: {{:linkColor}};
+}
+#sidebar .plugin li a::before {
+  background-color: {{:linkColorHover}};
+}
+#sidebar .plugin li a:hover::before {
+  background-color: {{:linkColor}};
+}
+@media (max-width: 480px) {
+  #sidebar .plugin > h3 {
+    border-color: #eeeeee;
+  }
+}
+
+
+// Footer
+// --------------------------------------------------
+
+#footer {
+  border-top-color: #eeeeee;
+}
+#footer a {
+  color: #888888;
+}
+#footer a:hover {
+  color: {{:linkColor}};
+}
+#footer .pagetop a {
+  background-color: #eeeeee;
+  color: #555555;
+}
+#footer .pagetop a:hover {
+  background-color: {{:linkColor}};
+  color: #ffffff;
+}
+
+
+// Timeline
+// --------------------------------------------------
+
+#cm .reaction .timeline::before,
+#tb .reaction .timeline::before {
+  background-color: #eee;
+}
+#cm .reaction .timeline article,
+#tb .reaction .timeline article {
+  background-color: #fff;
+  border-color: #eee;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+#cm .reaction .timeline article::after,
+#tb .reaction .timeline article::after {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAALCAYAAAA9St7UAAABVUlEQVRIS2P8DwTv379nEBISYmQgDFihSriANDMQ/wXib1Cx34S1Y6ig2Lx37979FxQUZGAEeQRkPBGeYRWxdhV1jiut5OITSWRlY+P+/evX12+f3szfu6i7/c3R3a+BxpDiGYrNg3kC5H64Rwh4Bmypb2bbQS99WRUHJUEGES42hjfffjEcuPeeYdvFx3c2T6+yJ8EzFJuH7AkMj+DxDGv4zF19oVZ6OcE64hjpY+2Vlwyrj12asjLdrYjIWCFo3tojl6ctz3QtwGYeuiewegSHZ/gTl5972uWnzQ2KCXQAipmyTVe/zo80kgbKfSQir5BtHjZP4PQIFs8Ipa298nZmkDZON6avu8owK1hHGKjgHREeIcs8XJ4Y3jGCo/RijZy+e0KwjW4WvfIIvjxHMI/gKYIpLmXQkhvF5uEstYZFPUKEJ2ABSnFNjB4zUD7ZLQVYzAAAz8SE74GVNXMAAAAASUVORK5CYII=);
+}
+</xmp>
+
+<!-- HTML -->
+<xmp id="template-html" class="hide">
 <!DOCTYPE html>
 <html lang="<%template_language>">
 <head>
@@ -37,8 +577,12 @@
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/jquery_masonry.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti-timeline.js"></script>
 	<!--/permanent_area-->
+	
+	{{:head_bottom}}
 </head>
 <body class="type-<!--permanent_area-->permanent<!--/permanent_area--><!--titlelist_area-->titlelist<!--/titlelist_area--><!--date_area-->date<!--/date_area--><!--category_area-->category<!--/category_area--><!--search_area-->search<!--/search_area--><!--tag_area-->tag<!--/tag_area--><!--edit_area-->edit<!--/edit_area-->">
+
+{{:body_top}}
 
 <header id="header">
 	<div class="container">
@@ -46,12 +590,7 @@
 			<h1><a href="<%url>"><%blog_name></a></h1>
 			<h2><%introduction></h2>
 		</hgroup>
-		<nav>
-			<ul>
-				<li><a class="icon-sns icon-white twitter" href="https://twitter.com/" title="Twitter">Twitter</a></li>
-				<li><a class="icon-sns icon-white facebook" href="http://www.facebook.com/" title="Facebook">Facebook</a></li>
-			</ul>
-		</nav>
+		{{:sns}}
 	</div>
 </header><!-- /#header -->
 
@@ -106,15 +645,18 @@
 					</ul>
 				</header>
 				<div class="body" data-eno="<%topentry_no>" data-title="<%topentry_title>">
+				  {{:post_top}}
 					<%topentry_body>
 					<aside>
 						<!--more_link--><div class="continue"><a href="<%topentry_link>#more" title="<%topentry_title>"><%template_extend></a></div><!--/more_link-->
 					</aside>
 					<!--more-->
 					<div id="more">
-						<%topentry_more>
+            {{:post_middle}}
+            <%topentry_more>
 					</div>
 					<!--/more-->
+					{{:post_bottom}}
 				</div>
 				
 				<!--not_permanent_area-->
@@ -374,6 +916,12 @@
 		</section>
 	</div>
 </footer><!-- #footer -->
+
+{{:body_bottom}}
+
+</body>
+</html>
+</xmp>
 
 </body>
 </html>
