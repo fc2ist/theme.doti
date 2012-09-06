@@ -3986,6 +3986,12 @@ input[type="submit"].btn.btn-mini {
 .pager .previous a:hover::before {
   border-right-color: #f89406;
 }
+.pager .disabled a,
+.pager .disabled a:hover {
+  color: #555555;
+  background-color: #eeeeee;
+  cursor: default;
+}
 .modal-open .dropdown-menu {
   z-index: 2050;
 }
