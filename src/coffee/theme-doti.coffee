@@ -3,7 +3,14 @@ $(->
   post.children('.body').fc2().eyecatch()
   post.find('> footer a[title]').tooltip()
 
-  $('#articles > .post > .body a[rel=lightbox]').fc2().lightbox()
+  $('.alert').alert()
+  $('.collapse').collapse()
+  $('.carousel').carousel()
+  $('[rel=popover]').popover().on('blur', ->
+    $(this).popover('hide')
+  )
+  $('a[rel=tooltip]').tooltip()
+  $('a[rel=lightbox]').fc2().lightbox()
   
   $('#pager').fc2().pager({'range': 9})
 
