@@ -163,7 +163,7 @@ class Cookie
   load: ->
     params = _deparam($.cookie('generator-doti'))
     for k, v of params
-      elem = $('#' + k)
+      elem = $('[id="' + k + '"]')
       type = elem.attr('type')
       if type == 'checkbox' || type == 'radio'
         elem.attr('checked', 'checked')

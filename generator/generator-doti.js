@@ -215,7 +215,7 @@
       params = _deparam($.cookie('generator-doti'));
       for (k in params) {
         v = params[k];
-        elem = $('#' + k);
+        elem = $('[id="' + k + '"]');
         type = elem.attr('type');
         if (type === 'checkbox' || type === 'radio') {
           elem.attr('checked', 'checked');
