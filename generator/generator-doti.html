@@ -3,23 +3,38 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
-	<title>ジェネレーター [.i]</title>
-	<link rel="stylesheet" type="text/css" charset="UTF-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/poto-bootstrap.css" />
+	<title>カスタマイズ [.i]</title>
+	<link rel="stylesheet" type="text/css" charset="UTF-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti.css" />
 	<!--[if lt IE 9]><script type="text/javascript" charset="utf-8" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/bootstrap.js"></script>
-	<script type="text/javascript" charset="utf-8" src="generator-doti.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/bootstrap-colorpicker.js"></script>
+  <script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/jquery_cookie.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/generator-doti.js"></script>
 	
 	<style type="text/css">
-	body {
-	 padding-top: 20px;
+	.container {
+	 width: 940px;
+	}
+	header {
+	 margin-bottom: 48px;
+	 padding: 48px 0;
+	 border-bottom: 1px solid #eee;
 	}
 	footer {
     margin: 80px 0 20px;
+    padding-top: 16px;
     text-align: right;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
 	}
 	h1 {
-	 margin-bottom: 30px;
+	 margin: 0;
+	 color: #333;
+	}
+	.description {
+	 margin: 16px 0 0;
+	 color: #999;
 	}
 	fieldset {
 	 margin-bottom: 48px;
@@ -27,13 +42,27 @@
   textarea {
     width: 95%;
   }
+  .output .btn {
+    padding: 19px 24px;
+    font-size: 30px;
+    line-height: 1;
+  }
 	</style>
 	
 </head>
 <body>
 
+  <header>
+    <div class="container">
+      <h1>カスタマイズ</h1>
+      <p class="description">
+        変更したい項目を埋めて生成ボタンを押すと<strong>HTML</strong>と<strong>スタイルシート</strong>が生成されるので、<br />
+        テンプレート設定の各項目にコピペで貼り付ければカスタマイズ完了です。
+      </p>
+    </div>
+  </header>
+
   <div class="container">
-    <h1>ジェネレーター</h1>
     
     <fieldset>
       <legend>SNSの設定</legend>
@@ -120,19 +149,39 @@
       <div class="row">
         <div class="control-group span4">
           <label for="input-css[color]" class="control-label">文字の色 :</label>
-          <div class="controls"><input type="text" id="input-css[color]" value="" placeholder="#555555" /></div>
+          <div class="controls">
+            <div class="input-append color" rel="colorpicker" data-color="#555555">
+              <input type="text" id="input-css[color]" value="" placeholder="#555555" />
+              <span class="add-on"><i style="background-color: #555555"></i></span>
+            </div>
+          </div>
         </div>
         <div class="control-group span4">
           <label for="input-css[linkColor]" class="control-label">リンクの色 :</label>
-          <div class="controls"><input type="text" id="input-css[linkColor]" value="" placeholder="#f89406" /></div>
+          <div class="controls">
+            <div class="input-append color" rel="colorpicker" data-color="#f89406">
+              <input type="text" id="input-css[linkColor]" value="" placeholder="#f89406" />
+              <span class="add-on"><i style="background-color: #f89406"></i></span>
+            </div>
+          </div>
         </div>
         <div class="control-group span4">
           <label for="input-css[linkColorHover]" class="control-label">カーソル乗せたときのリンクの色 :</label>
-          <div class="controls"><input type="text" id="input-css[linkColorHover]" value="" placeholder="#555555" /></div>
+          <div class="controls">
+            <div class="input-append color" rel="colorpicker" data-color="#555555">
+              <input type="text" id="input-css[linkColorHover]" value="" placeholder="#555555" />
+              <span class="add-on"><i style="background-color: #555555"></i></span>
+            </div>
+          </div>
         </div>
         <div class="control-group span4">
           <label for="input-css[backgroundColor]" class="control-label">背景の色 :</label>
-          <div class="controls"><input type="text" id="input-css[backgroundColor]" value="" placeholder="white" /></div>
+          <div class="controls">
+            <div class="input-append color" rel="colorpicker" data-color="#ffffff">
+              <input type="text" id="input-css[backgroundColor]" value="" placeholder="#ffffff" />
+              <span class="add-on"><i style="background-color: #ffffff"></i></span>
+            </div>
+          </div>
         </div>
         <div class="control-group span4">
           <label for="input-css[backgroundImage]" class="control-label">背景画像 :</label>
@@ -146,7 +195,7 @@
           <label for="input-css[layout]" class="control-label">レイアウト :</label>
           <div class="controls">
             <select id="input-css[layout]">
-              <option value="right">2カラム右サイドバー</option>
+              <option value="0">2カラム右サイドバー</option>
               <option value="left">2カラム左サイドバー</option>
               <option value="both">3カラム両サイド</option>
               <option value="single">1カラム</option>
@@ -157,11 +206,25 @@
     </fieldset>
     
     <fieldset>
+      <legend>プラグイン</legend>
+      <div class="row">
+        <div class="control-group span12">
+          <label for="input-plugin[timeline]">タイムライン :</label>
+          <div class="controls">
+            <label for="input-plugin[timeline]" class="control-label">
+              <input type="checkbox" id="input-plugin[timeline]" value="1" /> コメントとトラックバックをタイムライン風に表示する
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    
+    <fieldset class="output">
       <legend>生成</legend>
       <div class="row">
         <div class="control-group span12" style="margin-bottom:48px">
           <div class="controls">
-            <a href="#" rel="generate" class="btn btn-large btn-block btn-primary">生成</a>
+            <a href="#" rel="generate" class="btn btn-block btn-primary" data-loading-text="生成中…">生成</a>
           </div>
         </div>
         <div class="control-group span6 fade">
@@ -175,16 +238,29 @@
       </div>
     </fieldset>
 
-    <footer>
+  </div>
+
+  <footer>
+    <div class="container">
       <p>
         &copy; 2012 <a href="http://fc2ist.blog.fc2.com/">FC2.blog.hack;</a> All Rights Reserved.
       </p>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
 <!--
 ********************** 以下テンプレート **********************
 -->
+
+<!-- タイムライン -->
+<xmp id="template-plugin-timeline" class="hide">
+	<!--permanent_area-->
+	<link rel="stylesheet" type="text/css" charset="utf-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti-timeline.css" />
+	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/jquery_masonry.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti-timeline.js"></script>
+	<!--/permanent_area-->
+</xmp>
+
 
 <!-- SNS -->
 <xmp id="template-sns" class="hide">
@@ -555,8 +631,7 @@ a:hover {
 
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti.css" />
 	<link rel="stylesheet" type="text/css" charset="utf-8" href="<%css_link>" />
-	<!--permanent_area--><link rel="stylesheet" type="text/css" charset="utf-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti-timeline.css" /><!--/permanent_area-->
-	
+		
 	<link rel="alternate" type="application/rss+xml" title="RSS" href="<%url>?xml" />
 	<link rel="archives" href="/archives.html" title="All Archives" />
 	<!--preventry--><link rel="prev" href="<%preventry_url>" title="<%preventry_title>" /><!--/preventry-->
@@ -573,10 +648,8 @@ a:hover {
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/bootstrap.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/jquery_fc2_min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti.js"></script>
-	<!--permanent_area-->
-	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/jquery_masonry.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti-timeline.js"></script>
-	<!--/permanent_area-->
+		
+	{{:plugin}}
 	
 	{{:head_bottom}}
 </head>

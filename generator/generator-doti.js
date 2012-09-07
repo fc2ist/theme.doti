@@ -1,8 +1,8 @@
 (function() {
-  var Generator;
+  var Cookie, Generator;
 
   Generator = (function() {
-    var _defaults, _display, _generate, _generate_css, _generate_html, _generate_sns, _loadImage, _render;
+    var _defaults, _display, _generate, _generate_css, _generate_html, _generate_plugin, _generate_sns, _loadImage, _render;
 
     function Generator() {
       _generate();
@@ -13,8 +13,11 @@
       $('[id^=output]').parent().parent().removeClass('in');
       html = _generate_html();
       return _generate_css().then(function(css) {
-        return _display(html, css);
-      }, function() {});
+        _display(html, css);
+        return $('[rel=generate]').trigger('complete');
+      }, function() {
+        $('[rel=generate]').trigger('complete');
+      });
     };
 
     _generate_sns = function() {
@@ -43,7 +46,8 @@
     _generate_html = function() {
       var input, obj, template;
       obj = {
-        'sns': _generate_sns()
+        'sns': _generate_sns(),
+        'plugin': _generate_plugin()
       };
       input = $('[id^=input-html]').each(function() {
         var elem, id, val;
@@ -100,7 +104,7 @@
             return cnt++;
           }
         } else if (id === 'layout') {
-          if (val !== 'right') {
+          if (val !== '0') {
             add += '\n\n' + $.trim($('#template-layout-' + val).text());
           }
           return cnt++;
@@ -108,6 +112,21 @@
       });
       if (cnt >= input.length) dfd.resolve(_render(template, obj) + add);
       return dfd.promise();
+    };
+
+    _generate_plugin = function() {
+      var input, output;
+      output = '';
+      input = $('[id^=input-plugin]');
+      input.each(function() {
+        var elem, id, val;
+        elem = $(this);
+        val = $.trim(elem.val());
+        if (!elem.attr('checked')) return;
+        id = elem.attr('id').match(/\[([^\]]+)\]/)[1];
+        return output += $('#template-plugin-' + id).text();
+      });
+      return output;
     };
 
     _loadImage = function(url) {
@@ -186,15 +205,98 @@
 
   })();
 
+  Cookie = (function() {
+    var _deparam, _param;
+
+    function Cookie() {}
+
+    Cookie.prototype.load = function() {
+      var elem, k, params, type, v, _results;
+      params = _deparam($.cookie('generator-doti'));
+      _results = [];
+      for (k in params) {
+        v = params[k];
+        elem = $('#' + k);
+        type = elem.attr('type');
+        if (type === 'checkbox' || type === 'radio') {
+          _results.push(elem.attr('checked', 'checked'));
+        } else {
+          _results.push(elem.val(v));
+        }
+      }
+      return _results;
+    };
+
+    Cookie.prototype.set = function() {
+      var params;
+      params = _param($('[id^=input]'));
+      return $.cookie('generator-doti', params);
+    };
+
+    _param = function(elem) {
+      var params;
+      params = [];
+      elem.each(function() {
+        var e, id, type, val;
+        e = $(this);
+        id = e.attr('id');
+        val = e.val();
+        type = e.attr('type');
+        if (type === 'checkbox' || type === 'radio') val = !!e.attr('checked');
+        if (!val || val === '0') return;
+        return params.push(id + '=' + encodeURIComponent(val));
+      });
+      return params.join('&');
+    };
+
+    _deparam = function(str) {
+      var kv, pair, params, _i, _len, _ref;
+      if (!str) return {};
+      params = {};
+      _ref = str.split('&');
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        pair = _ref[_i];
+        kv = pair.split('=');
+        params[kv[0]] = decodeURIComponent(kv[1]);
+      }
+      return params;
+    };
+
+    return Cookie;
+
+  })();
+
   $(function() {
+    var colorExp, myCookie;
+    colorExp = new RegExp('^#([A-Za-z0-9]{3}|[A-Za-z0-9]{6})$');
+    myCookie = new Cookie();
+    myCookie.load();
     $('[rel=generate]').on('click', function(event) {
       event.preventDefault();
+      $(this).button('loading');
       return new Generator();
+    }).on('complete', function() {
+      var elem;
+      elem = $(this);
+      setTimeout(function() {
+        return elem.button('reset');
+      }, 500);
+      return myCookie.set();
     });
-    return $('[id^=output]').on('focus', function() {
+    $('[id^=output]').on('focus', function() {
       return $(this).select();
     }).on('mouseup', function(event) {
       return event.preventDefault();
+    });
+    return $('[rel=colorpicker]').colorpicker().find('input').on('keyup', function() {
+      var color, elem, parent, preview;
+      elem = $(this);
+      parent = elem.parent();
+      preview = elem.next().find('i');
+      color = elem.val();
+      if (!colorExp.test(color)) return;
+      parent.data('color', color);
+      return preview.css('background-color', color);
     });
   });
 

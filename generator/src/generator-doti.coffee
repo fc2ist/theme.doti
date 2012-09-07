@@ -7,7 +7,9 @@ class Generator
     html = _generate_html()
     _generate_css().then((css)->
       _display(html, css)
+      $('[rel=generate]').trigger('complete')
     , ->
+      $('[rel=generate]').trigger('complete')
       return
     )
     
@@ -34,6 +36,7 @@ class Generator
   _generate_html = ->
     obj =
       'sns': _generate_sns()
+      'plugin': _generate_plugin()
     input = $('[id^=input-html]').each(->
       elem = $(this)
       val = elem.val()
@@ -81,13 +84,25 @@ class Generator
         else
           cnt++
       else if id == 'layout'
-        if val != 'right'
+        if val != '0'
           add += '\n\n' + $.trim( $('#template-layout-' + val).text() )
         cnt++
     )
     if cnt >= input.length
       dfd.resolve(_render(template, obj) + add)
     return dfd.promise()
+  
+  _generate_plugin = ->
+    output = ''
+    input = $('[id^=input-plugin]')
+    input.each(->
+      elem = $(this)
+      val = $.trim( elem.val() )
+      if !elem.attr('checked') then return
+      id = elem.attr('id').match(/\[([^\]]+)\]/)[1]
+      output += $('#template-plugin-' + id).text()
+    )
+    return output
   
   _loadImage = (url)->
     dfd = new $.Deferred()
@@ -144,14 +159,73 @@ class Generator
         'name': 'Github',
         'url': 'https://github.com/{{:id}}'
 
+class Cookie
+  constructor:->
+      
+  load: ->
+    params = _deparam($.cookie('generator-doti'))
+    for k, v of params
+      elem = $('#' + k)
+      type = elem.attr('type')
+      if type == 'checkbox' || type == 'radio'
+        elem.attr('checked', 'checked')
+      else
+        elem.val(v)
+
+  set: ->
+    params = _param( $('[id^=input]') )
+    $.cookie('generator-doti', params)
+
+  _param = (elem)->
+    params = []
+    elem.each(->
+      e = $(this)
+      id = e.attr('id')
+      val = e.val()
+      type = e.attr('type') 
+      if type == 'checkbox' || type == 'radio'
+        val = !!e.attr('checked')
+      if !val || val == '0' then return
+      params.push( id + '=' + encodeURIComponent(val) )
+    )
+    return params.join('&')
+  
+  _deparam = (str)->
+    if !str then return {}
+    params = {}
+    for pair in str.split('&')
+      kv = pair.split('=')
+      params[kv[0]] = decodeURIComponent(kv[1])
+    return params
+
 $(->
+  colorExp = new RegExp('^#([A-Za-z0-9]{3}|[A-Za-z0-9]{6})$')
+  myCookie = new Cookie()
+  myCookie.load()
   $('[rel=generate]').on('click', (event)->
     event.preventDefault()
+    $(this).button('loading')
     new Generator()
+  ).on('complete', ->
+    elem = $(this)
+    setTimeout(->
+      elem.button('reset')
+    , 500)
+    myCookie.set()
   )
   $('[id^=output]').on('focus', ->
     $(this).select()
   ).on('mouseup', (event)->
     event.preventDefault()
+  )
+  $('[rel=colorpicker]').colorpicker()
+  .find('input').on('keyup', ->
+    elem = $(this)
+    parent = elem.parent()
+    preview = elem.next().find('i')
+    color = elem.val()
+    if !colorExp.test(color) then return
+    parent.data('color', color)
+    preview.css('background-color', color)
   )
 )
