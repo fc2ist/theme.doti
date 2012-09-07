@@ -274,6 +274,7 @@
     var colorExp, myCookie;
     colorExp = new RegExp('^#([A-Za-z0-9]{3}|[A-Za-z0-9]{6})$');
     myCookie = new Cookie();
+    myCookie.load();
     $('[rel=generate]').on('click', function(event) {
       event.preventDefault();
       $(this).button('loading');
