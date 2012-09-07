@@ -160,8 +160,6 @@ class Generator
         'url': 'https://github.com/{{:id}}'
 
 class Cookie
-  constructor:->
-      
   load: ->
     params = _deparam($.cookie('generator-doti'))
     for k, v of params
@@ -171,6 +169,9 @@ class Cookie
         elem.attr('checked', 'checked')
       else
         elem.val(v)
+        if elem.parent().attr('rel') == 'colorpicker'
+          elem.next().find('i').css('background-color', v)
+    return true
 
   set: ->
     params = _param( $('[id^=input]') )
@@ -192,10 +193,11 @@ class Cookie
   
   _deparam = (str)->
     if !str then return {}
+    str = decodeURIComponent(str)
     params = {}
     for pair in str.split('&')
       kv = pair.split('=')
-      params[kv[0]] = decodeURIComponent(kv[1])
+      params[kv[0]] = kv[1]
     return params
 
 $(->

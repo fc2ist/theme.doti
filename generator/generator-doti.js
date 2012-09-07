@@ -211,20 +211,22 @@
     function Cookie() {}
 
     Cookie.prototype.load = function() {
-      var elem, k, params, type, v, _results;
+      var elem, k, params, type, v;
       params = _deparam($.cookie('generator-doti'));
-      _results = [];
       for (k in params) {
         v = params[k];
         elem = $('#' + k);
         type = elem.attr('type');
         if (type === 'checkbox' || type === 'radio') {
-          _results.push(elem.attr('checked', 'checked'));
+          elem.attr('checked', 'checked');
         } else {
-          _results.push(elem.val(v));
+          elem.val(v);
+          if (elem.parent().attr('rel') === 'colorpicker') {
+            elem.next().find('i').css('background-color', v);
+          }
         }
       }
-      return _results;
+      return true;
     };
 
     Cookie.prototype.set = function() {
@@ -252,12 +254,13 @@
     _deparam = function(str) {
       var kv, pair, params, _i, _len, _ref;
       if (!str) return {};
+      str = decodeURIComponent(str);
       params = {};
       _ref = str.split('&');
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         pair = _ref[_i];
         kv = pair.split('=');
-        params[kv[0]] = decodeURIComponent(kv[1]);
+        params[kv[0]] = kv[1];
       }
       return params;
     };
