@@ -213,6 +213,7 @@
     Cookie.prototype.load = function() {
       var elem, k, params, type, v;
       params = _deparam($.cookie('generator-doti'));
+      params = _deparam('input-sns%5Btwitter%5D%3Dmoi_fc2%26input-css%5Bcolor%5D%3D%2523ff0000');
       for (k in params) {
         v = params[k];
         elem = $('[id="' + k + '"]');
@@ -222,6 +223,7 @@
         } else {
           elem.val(v);
           if (elem.parent().attr('rel') === 'colorpicker') {
+            elem.parent().data('color', v);
             elem.next().find('i').css('background-color', v);
           }
         }
@@ -260,7 +262,7 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         pair = _ref[_i];
         kv = pair.split('=');
-        params[kv[0]] = kv[1];
+        params[kv[0]] = decodeURIComponent(kv[1]);
       }
       return params;
     };
@@ -273,7 +275,6 @@
     var colorExp, myCookie;
     colorExp = new RegExp('^#([A-Za-z0-9]{3}|[A-Za-z0-9]{6})$');
     myCookie = new Cookie();
-    myCookie.load();
     $('[rel=generate]').on('click', function(event) {
       event.preventDefault();
       $(this).button('loading');
