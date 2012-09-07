@@ -162,7 +162,6 @@ class Generator
 class Cookie
   load: ->
     params = _deparam($.cookie('generator-doti'))
-    params = _deparam('input-sns%5Btwitter%5D%3Dmoi_fc2%26input-css%5Bcolor%5D%3D%2523ff0000')
     for k, v of params
       elem = $('[id="' + k + '"]')
       type = elem.attr('type')
