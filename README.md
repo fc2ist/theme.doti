@@ -41,7 +41,7 @@ jQuery.FC2.jsはFC2ブログ用のjQueryプラグインです。
 ライセンス
 ---------------------------------
 Copyright &copy; 2012 moi.
-Distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
  
 作者
 ---------------------------------
