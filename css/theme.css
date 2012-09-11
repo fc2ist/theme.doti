@@ -1,5 +1,5 @@
 /*!
- * .i v0.1.1
+ * .i v0.1.2
  *
  * Copyright (c) 2012 FC2.blog.hack();
  * Licensed under the MIT License
@@ -5534,6 +5534,11 @@ a.badge:hover {
 #articles > .post > .body table {
   margin-top: 16px;
   margin-bottom: 16px;
+}
+#articles > .post > .body .nofloat {
+  margin-left: 0;
+  margin-right: 0;
+  float: none;
 }
 .plugin table.calender {
   margin: 0;
