@@ -1,10 +1,6 @@
-/*!
- * .i v0.1.2
- *
- * Copyright (c) 2012 FC2.blog.hack();
- * Licensed under the MIT License
- *
- */
+/*! theme-doti - v0.1.2 - 2012-09-11
+* Copyright (c) 2012 moi; Licensed MIT */
+
 /*!
  * Bootstrap v2.1.0
  *
@@ -14,6 +10,7 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+
 article,
 aside,
 details,
@@ -2263,7 +2260,7 @@ table .span24 {
 .open {
   *z-index: 1000;
 }
-.open > .dropdown-menu {
+.open  > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -5470,6 +5467,9 @@ a.badge:hover {
 .icon-sns.github {
   background-position: -225px 0;
 }
+.carousel a {
+  color: #ffffff;
+}
 #articles > .post > .body > section,
 #articles > .post > .body #more > section {
   margin: 80px 0;
@@ -5675,9 +5675,14 @@ a.badge:hover {
   background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
   border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   *background-color: #e6e6e6;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   border: 1px solid #bbbbbb;
   *border: 0;
   border-bottom-color: #a2a2a2;

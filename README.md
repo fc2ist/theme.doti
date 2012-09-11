@@ -8,12 +8,11 @@
 
 * [カスタマイズ・ツール](http://fc2ist.github.com/theme.doti/generator/)
 
-##LESSファイルのコンパイル
+##コンパイル
 `src/bootstrap/less/variables.less`を編集することでリンク色などを細かく変更できます。  
-コンパイルはtheme.lessのみで大丈夫です。
 
-    cd src/less
-    lessc theme.less > ../../css/theme.css
+    cd /path/theme.dtoi
+    grunt watch
 
 ##紹介
 
