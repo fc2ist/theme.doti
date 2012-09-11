@@ -4,13 +4,13 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>カスタマイズ [.i]</title>
-	<link rel="stylesheet" type="text/css" charset="UTF-8" href="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti.css" />
+	<link rel="stylesheet" type="text/css" charset="UTF-8" href="../css/theme.min.css" />
 	<!--[if lt IE 9]><script type="text/javascript" charset="utf-8" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/bootstrap.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/bootstrap-colorpicker.js"></script>
   <script type="text/javascript" charset="utf-8" src="http://blog-imgs-56.fc2.com/f/c/2/fc2ist/jquery_cookie.js"></script>
-	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/generator-doti.js"></script>
+	<script type="text/javascript" charset="utf-8" src="generator-doti.js"></script>
 	
 	<style type="text/css">
 	.container {
@@ -208,14 +208,21 @@
     <fieldset>
       <legend>プラグイン</legend>
       <div class="row">
-        <div class="control-group span12">
-          <label for="input-plugin[timeline]">タイムライン :</label>
+        <div class="control-group span6">
           <div class="controls">
             <label for="input-plugin[timeline]" class="control-label">
               <input type="checkbox" id="input-plugin[timeline]" value="1" /> コメントとトラックバックをタイムライン風に表示する
             </label>
           </div>
         </div>
+        <div class="control-group span6">
+          <div class="controls">
+            <label for="input-plugin[carousel]" class="control-label">
+              <input type="checkbox" id="input-plugin[carousel]" value="1" /> トップページにカルーセルを表示する
+            </label>
+          </div>
+        </div>
+
       </div>
     </fieldset>
     
@@ -612,6 +619,26 @@ a:hover {
 }
 </xmp>
 
+<xmp id="template-plugin-carousel" class="hide">
+      <!--index_area-->
+      <section id="index-carousel" class="carousel slide fade">
+        <div class="carousel-inner">
+          <!--topentry-->
+          <div class="item" data-target="<%topentry_no>">
+            <a href="<%topentry_link>" rel="bookmark" title="<%topentry_title>"><img class="img-eyecatch" alt="<%topentry_title>" /></a>
+            <div class="carousel-caption">
+              <h4><a href="<%topentry_link>" rel="bookmark"><%topentry_title></a></h4>
+              <p><%topentry_discription></p>
+            </div>
+          </div>
+          <!--/topentry-->
+        </div>
+        <a class="carousel-control left" href="#index-carousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#index-carousel" data-slide="next">&rsaquo;</a>
+      </section>
+      <!--/index_area-->
+</xmp>
+
 <!-- HTML -->
 <xmp id="template-html" class="hide">
 <!DOCTYPE html>
@@ -649,7 +676,7 @@ a:hover {
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/jquery_fc2_min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="http://blog-imgs-56-origin.fc2.com/f/c/2/fc2ist/theme-doti.js"></script>
 		
-	{{:plugin}}
+	{{:plugin.timeline}}
 	
 	{{:head_bottom}}
 </head>
@@ -686,6 +713,8 @@ a:hover {
 			<!--titlelist_area-->
 			<h1>Archives</h1>
 			<!--/titlelist_area-->
+			
+{{:plugin.carousel}}
 			
 			<section id="articles">
 			<!--not_titlelist_area-->

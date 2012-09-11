@@ -93,14 +93,13 @@ class Generator
     return dfd.promise()
   
   _generate_plugin = ->
-    output = ''
+    output = {}
     input = $('[id^=input-plugin]')
     input.each(->
       elem = $(this)
       val = $.trim( elem.val() )
-      if !elem.attr('checked') then return
       id = elem.attr('id').match(/\[([^\]]+)\]/)[1]
-      output += $('#template-plugin-' + id).text()
+      output[id] = if !elem.attr('checked') then '' else $('#template-plugin-' + id).text()
     )
     return output
   
@@ -120,8 +119,14 @@ class Generator
   
   _render = (str, obj)->
     for k, v of obj
-      regexp = new RegExp( '{{:' + k + '}}', 'g' )
-      str = str.replace(regexp, v)
+      console.log(typeof v)
+      if typeof v == 'object'
+        for ck, cv of v
+          regexp = new RegExp( '{{:' + k + '\.' + ck + '}}', 'g' )
+          str = str.replace(regexp, cv)
+      else
+        regexp = new RegExp( '{{:' + k + '}}', 'g' )
+        str = str.replace(regexp, v)
     return str
   
   _display = (html, css)->

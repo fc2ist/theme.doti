@@ -116,15 +116,14 @@
 
     _generate_plugin = function() {
       var input, output;
-      output = '';
+      output = {};
       input = $('[id^=input-plugin]');
       input.each(function() {
         var elem, id, val;
         elem = $(this);
         val = $.trim(elem.val());
-        if (!elem.attr('checked')) return;
         id = elem.attr('id').match(/\[([^\]]+)\]/)[1];
-        return output += $('#template-plugin-' + id).text();
+        return output[id] = !elem.attr('checked') ? '' : $('#template-plugin-' + id).text();
       });
       return output;
     };
@@ -146,11 +145,20 @@
     };
 
     _render = function(str, obj) {
-      var k, regexp, v;
+      var ck, cv, k, regexp, v;
       for (k in obj) {
         v = obj[k];
-        regexp = new RegExp('{{:' + k + '}}', 'g');
-        str = str.replace(regexp, v);
+        console.log(typeof v);
+        if (typeof v === 'object') {
+          for (ck in v) {
+            cv = v[ck];
+            regexp = new RegExp('{{:' + k + '\.' + ck + '}}', 'g');
+            str = str.replace(regexp, cv);
+          }
+        } else {
+          regexp = new RegExp('{{:' + k + '}}', 'g');
+          str = str.replace(regexp, v);
+        }
       }
       return str;
     };
