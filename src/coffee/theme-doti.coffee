@@ -11,7 +11,7 @@ $(->
   )
   $('a[rel=tooltip]').tooltip()
   $('a[rel=lightbox]').fc2().lightbox()
-  
+
   $('#pager').fc2().pager({'range': 9})
 
   $('.dropdown-toggle').dropdown()

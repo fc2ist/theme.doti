@@ -1,7 +1,7 @@
 class Generator
   constructor:->
     _generate()
-  
+
   _generate = ->
     $('[id^=output]').parent().parent().removeClass('in')
     html = _generate_html()
@@ -12,7 +12,7 @@ class Generator
       $('[rel=generate]').trigger('complete')
       return
     )
-    
+
   _generate_sns = ->
     output = ''
     input = $('[id^=input-sns]').not('[value=""]')
@@ -32,7 +32,7 @@ class Generator
       )
     )
     return template.replace('{{loop}}' + list + '{{/loop}}', output)
-  
+
   _generate_html = ->
     obj =
       'sns': _generate_sns()
@@ -48,7 +48,7 @@ class Generator
     )
     template = $('#template-html').text()
     return _render(template, obj)
-  
+
   _generate_css = ->
     dfd = new $.Deferred()
     template = $.trim( $('#template-css').text() )
@@ -91,7 +91,7 @@ class Generator
     if cnt >= input.length
       dfd.resolve(_render(template, obj) + add)
     return dfd.promise()
-  
+
   _generate_plugin = ->
     output = {}
     input = $('[id^=input-plugin]')
@@ -102,7 +102,7 @@ class Generator
       output[id] = if !elem.attr('checked') then '' else $('#template-plugin-' + id).text()
     )
     return output
-  
+
   _loadImage = (url)->
     dfd = new $.Deferred()
     img = new Image()
@@ -116,7 +116,7 @@ class Generator
     )
     img.src = url
     return dfd.promise()
-  
+
   _render = (str, obj)->
     for k, v of obj
       console.log(typeof v)
@@ -128,11 +128,11 @@ class Generator
         regexp = new RegExp( '{{:' + k + '}}', 'g' )
         str = str.replace(regexp, v)
     return str
-  
+
   _display = (html, css)->
     $('[id="output[html]"]').val($.trim(html)).parent().parent().addClass('in')
     $('[id="output[css]"]').val($.trim(css)).parent().parent().addClass('in')
-  
+
   _defaults =
     'color': '#555555',
     'linkColor': '#f89406',
@@ -189,14 +189,14 @@ class Cookie
       e = $(this)
       id = e.attr('id')
       val = e.val()
-      type = e.attr('type') 
+      type = e.attr('type')
       if type == 'checkbox' || type == 'radio'
         val = !!e.attr('checked')
       if !val || val == '0' then return
       params.push( id + '=' + encodeURIComponent(val) )
     )
     return params.join('&')
-  
+
   _deparam = (str)->
     if !str then return {}
     str = decodeURIComponent(str)
