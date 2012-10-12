@@ -2,7 +2,7 @@ class listPager
   constructor:(@target, @range = 10)->
     if @target.length < 1 then return
     _build.apply(this)
-  
+
   _build = ->
     self = this
     wrap = $('<div class="pagination" />').insertAfter(@target.parent())
@@ -36,7 +36,7 @@ $(->
   reaction = $('.reaction .articles')
   articles = reaction.children('article')
   reaction.on('changed', ->
-    if !timeline then return 
+    if !timeline then return
     $(this).masonry('reload')
     articles.each(->
       e = $(this)

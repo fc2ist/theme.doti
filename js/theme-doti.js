@@ -1,4 +1,4 @@
-/*! theme-doti - v0.1.3 - 2012-09-12
+/*! theme-doti - v0.1.4 - 2012-10-13
 * Copyright (c) 2012 moi; Licensed MIT */
 
 
